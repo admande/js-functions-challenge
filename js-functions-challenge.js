@@ -48,7 +48,7 @@ function loadTeams(array){
   gameWinLoss(array);
   team_objs.sort(rank);
   setRank(team_objs);
-  console.log(team_objs);
+  display(team_objs);
 }
 
 function gameWinLoss(array){
@@ -116,6 +116,15 @@ function createTeam(name){
   return team;
 };
 
-
+function display(array){
+  var result = " \n"
+  result += "---------------------------------------------------------\n";
+  var header = "| Name\t\tRank\tTotal Wins\tTotal Losses \t|\n"
+  result += header;
+  for(var i = 0; i < array.length; i++){
+    result += "| " + array[i].name +"  " + "\t" + array[i].rank + "\t" + array[i].wins + "\t\t"+ array[i].losses + "\t\t|\n";
+   }
+   result += "---------------------------------------------------------";
+  console.log(result);}
 
 loadTeams(games);
