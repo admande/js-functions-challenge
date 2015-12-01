@@ -1,4 +1,13 @@
-var league;
+var games;
+
+var team_objs = [];
+var loadTeams;
+var gameWinLoss;
+var compare;
+var rank;
+var setRank;
+
+
 var gameInfo = function(){
   return [
    {
@@ -27,11 +36,7 @@ var gameInfo = function(){
    }
  ]
 }
-
-
-
-var games = gameInfo();
-var team_objs = [];
+games = gameInfo();
 
 function loadTeams(array){
   for(var i = 0; i < array.length; i++){
@@ -42,6 +47,7 @@ function loadTeams(array){
   deleteDuplicates(team_objs);
   gameWinLoss(array);
   team_objs.sort(rank);
+  setRank(team_objs);
   console.log(team_objs);
 }
 
@@ -83,6 +89,12 @@ function rank(a,b) {
  return 0;
 }
 
+function setRank(array){
+  for(var i = 0; i < array.length; i++){
+    array[i].rank = i + 1;
+  }
+}
+
 
 function deleteDuplicates(array){
   for(var i = 0; i < array.length - 1; i++){
@@ -98,7 +110,8 @@ function deleteDuplicates(array){
 function createTeam(name){
   var team = { name: name,
                wins: 0,
-               losses: 0
+               losses: 0,
+               rank: 0
               };
   return team;
 };
